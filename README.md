@@ -1,3 +1,4 @@
 # ISEP-LICENCIATURA
 
-```Vessel and all about projects & stuffs of ISEP.```
+```Vessel on ISEP projects and materials.
+Everything I've been accumulating.```
