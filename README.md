@@ -1,3 +1,3 @@
 # ISEP-LICENCIATURA
 
-``Resolução e stuff dos exercícios/projetos ISEP.```
+```Resolução e stuff dos exercícios/projetos ISEP.```
