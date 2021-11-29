@@ -1,0 +1,78 @@
+EXAME EP NORMAL
+
+    Exercicio 1)
+    a)
+     
+    class BlocoFixo : public Bloco
+    {
+    private:
+            unsigned int id_processador;
+    public:
+            // outros metodos
+    };
+     
+    class BlocoPrioritario : public Bloco
+    {
+    private:
+            unsigned int prioridade;
+    public:
+            // outros metodos      
+    };
+     
+    b)
+     
+    class WorkStealing
+    {
+    private:
+            vector <<stack<Bloco*>> vecProcessadores;
+         
+    public:
+            // outros metodos
+    };
+     
+    c)
+     
+    //
+    public:
+            // outros metodos
+            bool insertBloco(unsigned int id_Processador, Bloco* bloco);
+           
+    };
+     
+    d)
+     
+    void WorkStealing::rouba_por_prioridade(unsigned int id_processador, unsigned int prioridade)
+    {
+            for (int i = 0; i < vecProcessadores.size(); i++)
+                    if (i == id_processador) // o id do processador corresponde ao indice do vector segundo o enunciado
+                            if (vecProcessadores.at(i).size() == 0) // se a stack (processador) da posição i não tiver blocos, necessita de ir ao seguinte
+                            {
+                                    stack<Bloco*> blocosProcessadorSeguinte;
+									
+                                    if (i + 1 == vecProcessadores.size()) // Se for o ultimo  do vector...
+                                            blocosProcessadorSeguinte = vecProcessadores.at(0); // busca blocos do processador com indice 0
+                                    else
+                                            blocosProcessadorSeguinte = vecProcessadores.at(i + 1);	//senão vai ao processador seguinte
+											
+                                    if (blocosProcessadorSeguinte.empty()) // o processador seguinte tambem nao tem blocos a processar
+                                            return;	//? duvida nesta parte; d
+     
+                                    while (!blocosProcessadorSeguinte.empty())
+                                    {
+                                            Bloco* blocoEmAnalise = blocosProcessadorSeguinte.top();	//vai buscar o bloco no topo da stack
+											
+											//só os blocos prioritários possuem prioridade, por isso considerar apenas estes
+										
+                                            if (typeid(*blocoEmAnalise) == typeid(BlocoPrioritario))
+                                            {
+												//obter a prioridade do bloco prioritário
+												
+                                                    int prioridade = dynamic_cast<BlocoPrioritario*>(blocoEmAnalise)->getPrioridade();
+													
+                                                    if (prioridade == prior)	//se a prioridade for igual à do parâmetro, inserir bloco na stack na posição indicada no parâmetro
+                                                            inserirBloco(n_processador, blocoEmAnalise);
+                                            }
+                                    }
+                            }
+    }
+

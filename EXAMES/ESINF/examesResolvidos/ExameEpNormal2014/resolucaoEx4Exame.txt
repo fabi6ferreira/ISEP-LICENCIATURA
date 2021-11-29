@@ -1,0 +1,28 @@
+4.  Defina na classe template tree<TN> o método treeHas, que verifica se a árvore contém todos os 
+elementos de uma lista, que é passada como parâmetro. 
+
+template<class TN>
+bool tree<TN>::treeHas(list <TN> lista)
+{
+	queue <TN> qEementos = preOrder(); //obter queue em ordem
+	
+	int nElementos = lista.size();
+	int count=0;
+	
+	//percorre a lista
+	 for (std::list<int>::iterator it=mylist.begin(); it != mylist.end(); it++)
+	 {
+		//percorre a queue
+		 for (std::queue<int>::iterator itq=qElementos.begin(); itq != qElementos.end(); itq++)
+		 {
+			if(*it == *itq)	//se os elementos forem iguais, incrementa o contador
+				count++;
+		 }
+		
+	 }
+	 
+	 if(count == nElementos)
+		return true;
+		
+	return false;
+}

@@ -1,0 +1,11 @@
+// Exame Ep Normal ESINF Jan 2014
+// Exercicio 3 - alinea a)
+
+class PercEscolar : public graphStlPath<string,int>
+{
+private:
+	string endereco;
+	int distancia;
+public:
+	//metodos
+}

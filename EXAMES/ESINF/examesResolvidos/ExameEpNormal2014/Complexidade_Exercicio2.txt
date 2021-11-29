@@ -1,0 +1,17 @@
+/* Exame Ep Normal Jan 2014
+	Exercício 2  - Complexidade
+*/
+
+long int misterio (int m, long int n) 
+{ 
+  if (m >= n)		//1
+     return 0;		// Ao sair aqui -> Complexidade Constante O(1);
+ 
+  int parcial = misterio (m+1, n);	//n 
+   
+  return parcial + 1; // Ao sair aqui -> Complexidade Linear O(n);
+     } 
+
+/* 
+Algoritmo Não Determinístico, com complexidade no melhor caso Constante O(1) e no pior caso com complexidade linear O(n).
+ */

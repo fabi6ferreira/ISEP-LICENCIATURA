@@ -1,0 +1,12 @@
+4)
+Declaração na classe template tree<TN>:
+	bool treeHas(const TN& elementoX) const;
+Implementação:
+        template<class TN>
+        bool tree<TN> treeHas(const TN& elementoX) const
+        {
+	        for(bstIteratorLevel<TN> it = begin(); it != end(); it++)
+        	        if((*it).compare(elementoX) == 0)
+                	        return true;
+                return false;
+	}

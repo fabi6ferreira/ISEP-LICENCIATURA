@@ -1,0 +1,90 @@
+1)
+	public static DoublyLinkedList<Integer> calcMMS(DoublyLinkedList<Integer> serie, Integer period) {
+        if (period == 0 || period > serie.size()) {
+            return null;
+        }
+
+        DoublyLinkedList<Integer> retu = new DoublyLinkedList<>();
+        DoublyLinkedList<Integer> tem = new DoublyLinkedList<>();
+        int sum = 0;
+
+        for (int t : serie) {
+            tem.addLast(t);
+            sum += t;
+            int temp = tem.size();
+            if (temp < period) {
+                retu.addLast(0);
+            } else {
+                retu.addLast(sum / period);
+                sum -= tem.first();
+                tem.removeFirst();
+            }
+        }
+        return retu;
+    }
+	
+2)
+	Double	centersGraph (Graph<V, Double> g, ArrayList<V> lstcenters){
+		Double raio = Double.MAX_VALUE;
+		
+		for(V vOr : g.vertices()){
+			LinkedList<V> path = new LinkedList<>();
+			Double centralidade = 0;
+			for(V vDe : g.vertices()){
+				if(!vOr.equal(vDe)){
+					Double pathCentralidade = GraphAlgorithms.shortestPath(g,vOr, VDe,path);
+					if(pathCentralidade > centralidade){
+						centralidade = pathCentralidade;
+					}
+				}
+				path.clear();
+			}
+			
+			if(centralidade < raio){
+				raio = centralidade;
+				lstCenters.clear();
+			}
+			
+			if(centralidade == raio){
+				lstCenters.add(vOr);
+			}
+		}
+		return raio;			
+	}
+
+4)
+	public List<Node<E>> baseTree (){
+		List<Node<E>> retu = new ArrayList<>();
+		baseTree (root(), 0, retu);
+		
+		return retu;
+	}
+	
+	private void baseTree (Node<E> nodeAct, int correntLvl, List<Node<E>> node){
+		if(nodeAct == null){
+			return null;
+		}
+		if(correntLvl == height){
+			node.add(nodeAct);
+		}else if(correntLvl < height){
+			nosUltimoNivel(node.getLeft(), currentLevel++, node );
+			nosUltimoNivel(node.getRight, currentLevel++, node );
+		}
+	}
+5)
+	public ArrayList<K> menoresElementos (ArrayList<K> v, int n) {	
+		ArrayList<K> menorN = new ArrayList<>();
+		HeapPriorityQueue <k,v> heap = new HeapPriorityQueue<>();
+		
+		for (int i = 0; i < v.size(); i++){
+			heap.insert(i,v.get(i));
+		}
+		
+		for (int i = 0; i < n; i++){
+			menorN.add(heap.removeMin()); 
+		}	
+		
+		return menorN;
+	}
+	
+	

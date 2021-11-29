@@ -1,0 +1,72 @@
+1)
+	public static DoublyLinkedList<String> checkErrors(DoublyLinkedList<String> str, Set<String> dictionary) throws CloneNotSupportedException {
+        DoublyLinkedList<String> retu = new DoublyLinkedList<>();
+        Map<String, String> errorList = new HashMap<>();
+        String error = "ERRO_";
+
+        for (String word : str) {
+            if (!dictionary.contains(word)) {
+                if (!errorList.containsKey(word)) {
+                    String erro = error + errorList.size() + 1;
+                    errorList.put(word, erro);
+                    word = erro;
+                }else{
+                    word = errorList.get(word);
+                }
+            }
+            retu.addLast(word);
+        }
+
+        return retu;
+    }
+	
+2)
+	
+	public	Integer	checkSequence(Graph<Integer,Character> trie, Character[] sequence){
+		if (sequence.size == 0) return -1;
+		int vAct = 0;
+		
+		for(int i = 0; i < sequence.size; i++){
+			Set<Edge<Integer,Character>> out = trie.outgoingEdges(vAct);
+			boolean valid = true;
+			for(Edge<Integer,Character> ed : out){
+				if(ed.getElement == charater[i]){
+					vAct = ed.getVDest();
+					valid = false;
+					break;
+				}
+			}
+			if(valid) return -1;
+		}		
+		if(vAct <= 100) return vAct;
+		return -1;
+	}
+	
+4) 
+	public List<Node<E>> inOrder(int lvlMax){
+		List<Node<E>> list = new ArrayList<>();
+		
+		inOrder(root(), 0, lvlMax, list);
+		
+		return list;
+	}
+	
+	private void inOrder(Node<E> node, int lvl, int lvlMax, List<Node<E>> list){
+		if(node == null ) return null;
+		lvl++;
+		if(lvl <= lvlMax){
+			inOrder(node.getRight(), lvl++, lvlMax, list)
+			list.add(node);
+			inOrder(node.getLeft(), lvl++, lvlMax, list)
+		}	
+	}
+	
+5)
+	public boolean verific(ArrayList<Integer> list){
+		for(int i = 1; i < list.size(); i++){
+			if(list.get(i) < list.get((i-1)/2)){
+				retur false;
+			}
+		}
+		return true;
+	}

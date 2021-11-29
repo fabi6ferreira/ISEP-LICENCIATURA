@@ -1,0 +1,49 @@
+a)
+queue<pais> adicionarViagem(pais p){
+       
+                queue p1 = paises;
+                list<pais> lista;
+                while(!p1.empty()){            
+                        lista.push_back(p1.front());
+                        p1.pop();
+                }
+ 
+                int jaexiste=0;        
+                for(std::list<pais>::iterator it=lista.begin(); it!=list.end();it++){
+                        if (*it.getNome()==p.getNome())
+                        {
+                                jaexiste=1;
+                        }
+                }
+ 
+                if (jaexiste==0)
+                {
+                        lista.push_back(p);
+                        lista.sort(ordena);
+                        for(std::list<pais>::iterator it=lista.begin(); it!=list.end();it++){
+                        p1.push(*it);
+                        }
+                        return p1;
+                }else{
+                        return paises;         
+                }      
+        }
+ 
+        bool ordena(pais &p1, pais&p2){
+       
+                return (p1.getNome()<p2.getNome());    
+        }
+
+b)
+List<Pais*> Mapa::paisesVisitantes( String continente)
+{
+	list<Pais *> paisesV;
+	for( list<GraphVertex<Pais*, double>>::iterator it = list.begin(); it!= list.end(); i++)
+	{
+		if((*it)->getVContent->getContinente() = continente)
+		{
+			paisV.pushback(*it->getVContent());
+		}
+	}
+	return paisV;
+}

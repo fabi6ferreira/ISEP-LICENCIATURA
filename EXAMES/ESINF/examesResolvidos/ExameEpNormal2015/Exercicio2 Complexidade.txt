@@ -1,0 +1,41 @@
+﻿int outroMisterio(vector<int> v, int x, int y) {
+
+	int r = 0;
+
+	for (int i = x; i < x + y; i++) // 1 a 5
+	{
+		r = r + v[i];
+	}
+	int aux= r / y;
+	cout << aux;
+	return aux;
+} 
+
+/* 
+alinea a)
+
+int outroMisterio(vector<int> v, int x, int y)
+
+Faz o somatorio dos elementos
+do vector entre duas posicoes passadas como parametro,
+e devolve a média desses elementos.
+
+*/
+
+void misterio(vector <int> vi, vector<int> &vo)
+{
+	int s = 3;
+
+	for (int i = 0; i < vi.size() - s; i++) //n
+	{
+		vo[i] = outroMisterio(vi, i, s); // atribuicao é //1
+	}
+}
+/*
+alinea b)
+
+void misterio(vector <int> vi, vector<int> &vo)
+
+Complexidade Temporal O(n);
+
+*/

@@ -1,0 +1,32 @@
+eu o k?
+// Ex3 c
+
+queue<string>CaminhoSimples(string origem)
+{
+	queue<stack<TV>aux;
+	
+	vector<TV> cidades;
+	
+	for(auto it=vlist->begin(); it!=vlist->end();it++)
+	{
+		cidades.push(*it);
+	}
+	
+	for(int i=0; i<cidades.size();i++)
+	{
+		aux=distinctPaths(origem,cidades[i]);
+	}
+	while(aux!=empty())
+	{
+		if(aux.top().size()==2)
+		{
+			double tempo=getEContent()[0];
+			double custo=getEContent()[1];
+			
+			cout << "tempo= " << tempo <<endl;<< "custo= " << custo <<endl;
+		
+		}
+		aux.pop();
+	}
+}
+

@@ -1,0 +1,146 @@
+       a)
+                Para adicionar um país a uma viagem precisamos destes métodos nas classes "viagem" e "pais" respectivamente:
+ 
+                class viagem
+                {
+                private:
+                        queue<pais> paises;
+                public:
+                        // construtores e destrutor
+ 
+                        // m1)
+                        bool inserirPais(const pais& p);
+                        // m2)
+                        void sortPaises();
+ 
+                        // outros metodos
+                };
+ 
+                class pais
+                {
+                private:
+                        string nome, continente;
+                        set<string> idiomas;
+                public:
+                        // construtores e destrutor
+                       
+                        // m3)
+                        string getNome() const;
+                        // m4)
+                        bool operator==(const pais& p) const;
+                       
+                        // outros metodos
+                };
+ 
+                m1)
+                        bool viagem::inserirPais(const pais& p)
+                        {
+                                bool repetido = false;
+                                queue<pais> paisesCopia = paises;
+ 
+                                while(!paisesCopia.empty())
+                                {
+                                        if (p == paisesCopia.front())
+                                                repetido = true;
+                                        paisesCopia.pop();
+                                }
+ 
+                                if (repetido)
+                                        return false;
+ 
+                                paises.push(p);
+                                sortPaises();
+                                return true;
+                        }
+ 
+                m2)
+                        void viagem::sortPaises()
+                        {
+                                queue<pais> paisesCopia = paises;
+                                list<pais> listPaises;
+                                list<string> nomePaises;
+                                while(!paisesCopia.empty())
+                                {
+                                        listPaises.insert(paisesCopia.front());
+                                        nomePaises.insert(paisesCopia.front().getNome());
+                                        paisesCopia.pop();
+                                }
+ 
+                                nomePaises.sort(); // pode-se usar sort(nomePaises.begin(), nomePaises.end())
+                                nomePaises.unique(); // opcional para eliminar paises repetidos (nao e susposto, uma vez que o inserirPais() ja faz esta verificacao)
+ 
+                                for(list<string>::iterator it1 = nomePaises.begin(); it1 != nomePaises.end(); it1++)
+                                        for(list<pais>::iterator it2 = listPaises.begin(); it2 != listPaises.end(); it2++)
+                                                if (*it1 == *it2.getNome())
+                                                        paisesCopia.push(*it2);
+ 
+                                paises = paisesCopia;
+                        }
+ 
+                m3)
+                        string pais::getNome() const
+                        {
+                                return nome;
+                        }
+ 
+                m4)
+                        bool pais::operator==(const pais& p) const;
+                        {
+                                return(this->nome = p.getNome()); // podia acrescentar mais criterios de comparacao mas nao achei necessario para o exercicio
+                        }
+ 
+        b)
+                Para poder indicar quantos idiomas se poderão falar numa viagem é preciso termos os seguintes métodos nas classes pais e viagem respectivamente:
+ 
+                class viagem
+                {
+                private:
+                        queue<pais> paises;
+                public:
+                        // construtores e destrutor
+ 
+                        // m1)
+                        int getNIdiomasViagem() const;
+                       
+                        // outros metodos
+                };
+ 
+                class pais
+                {
+                private:
+                        string nome, continente;
+                        set<string> idiomas;
+                public:
+                        // construtores e destrutor
+                       
+                        // m2)
+                        set<string> getIdiomas() const;
+                       
+                        // outros metodos
+                };
+ 
+                m1)
+                        int viagem::getNIdiomasViagem() const
+                        {
+                                list<string> todosIdiomas;
+                                queue<pais> paisesCopia = paises;
+ 
+                                while(!paisesCopia.empty())
+                                {
+                                        set<string> idiomasPais = paisesCopia.front().getIdiomas();
+                                        for (set<string>::iterator it = idiomasPais.begin(); i != idiomasPais.end(); it++)
+                                                todosIdiomas.insert(*it);
+                                        paisesCopia.pop();
+                                }
+ 
+                                todosIdiomas.sort();
+                                todosIdiomas.unique();
+ 
+                                return todosIdiomas.size();
+                        }
+ 
+                m2)
+                        set<string> getIdiomas() const
+                        {
+                                return idiomas;
+                        }

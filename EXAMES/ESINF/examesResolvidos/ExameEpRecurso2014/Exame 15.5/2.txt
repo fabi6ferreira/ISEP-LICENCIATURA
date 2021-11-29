@@ -1,0 +1,27 @@
+a)
+                O método misterio ordena um vector de inteiros com tamanho, definido pelo parametro n, fazendo comparações sucessivas da primeira metade do vector
+                com a segunda metade usando recursividade para subdividir cada metade nas suas próprias metades. // Acredito que seja o algoritmo de Merge sort mas não tenho certeza
+                No final retorna o primeiro elemento do vector resultante da ordenação que corresponde ao inteiro máximo do vector.
+
+b)
+                int misterio (vector<int> A, int n)                                                                                                    
+                {
+                        if (n==1)                                               1
+                                return A[0];                                    1
+                        else
+                        {
+                                int k = n/2;                                    1 + 1
+                                for (size_t i=0; i<k; i++)                      log(n)
+                                {
+                                        if (n%2==0)                             1
+                                                A[i] = teste(A[i], A[i+k]);     1+1
+                                        else                   
+                                                A[i] = teste(A[i], A[i+k+1]);   1+1+1
+                                }
+                                if (n/2 != 0)        			        1
+                                        A[0] = teste(A[0], A[(n/2)]);           1
+                                 return misterio(A, k);                         n
+                        }                      
+                }
+ 
+                Este metodo é não determinístico, assim sendo a complexidade desta função para o pior dos casos é nlog(n) e a complexidade para o melhor dos casos é 1.

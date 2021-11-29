@@ -1,0 +1,27 @@
+template <class TN>
+int tree<TN>::checkAvgSons(){
+  int n = 0;
+  return checkAvgSonsRecursive(this->root, n);
+  
+}
+
+template <class TN>
+int tree<TN>::checkAvgSonsRecursive(treeNode<TN>* rz, int n){
+  
+  if(rz->getLeft()!=NULL && rz->getRight()!=NULL){
+    if(((rz->getLeft()->getKey() + rz->getRight()->getKey()) / 2) == rz->getKey()){
+      n++;
+    }
+  }
+  
+  if(rz->getLeft()!=NULL){
+    checkAvgSonsRecursive(rz->getLeft(), n);
+  }
+  
+  if(rz->getRight()!=NULL){
+    checkAvgSonsRecursive(rz->getRight(), n);
+  }
+  
+  return n;
+  
+}

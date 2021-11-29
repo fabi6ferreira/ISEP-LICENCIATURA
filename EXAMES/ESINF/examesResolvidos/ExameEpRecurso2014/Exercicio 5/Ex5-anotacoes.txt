@@ -1,0 +1,15 @@
+Não há heap "normal" há as de prioridade crescente e as de prioridade decrescente.
+O objetivo seria:
+
+#1: descrever porque é que a ordem dos elementos não corresponde a uma heap.
+#2: criar uma árvore de heap com os elementos introduzidos pela ordem dada.
+#3: criar o vector correspondente.
+
+
+#1
+Nao Corresponde, porque a ordem dos elementos dados, para cada raiz "pai" os elementos folha " filhos"ão estão de acordo,
+ nem sempre o no da raiz é maior que os nos filhos.
+
+Depois era sim como fizemos preencher a heap , fazendo as trocas tendo em conta que a raiz é sempre maior perioridade que os filhos,
+e preenchias o vector de acordo com a heap que desenhaste.
+

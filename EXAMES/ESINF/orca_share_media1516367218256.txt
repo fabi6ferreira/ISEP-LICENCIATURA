@@ -1,0 +1,102 @@
+﻿
+public static Map<Integer, LinkedList<Integer>> KSubLists(LinkedList<Integer> list, ArrayList<Integer> centers) {
+	HashMap<Integer, LinkedList<Integer>> map = new HashMap<>();
+	for (Integer center : centers) {
+		map.put(center, new LinkedList<>());
+	}
+	for (Integer i : list) {
+		int auxSub = Integer.MAX_VALUE;
+		int auxN = Integer.MAX_VALUE;
+		for (Integer center : centers) {
+			if (Math.abs(center - i) < auxSub) {
+				auxSub = Math.abs(center - i);
+				auxN = center;
+			}
+		}
+		map.get(auxN).add(i);
+	}
+	return map;
+}
+
+//Exercício 2
+/* a) O método é destinado a criar um clone da árvore referenciada ao percorrer todos os seus elementos e inserindo na nova arvore criada localmente e a ser retornada.
+b) O método é deterministico pois, independemente do input, terá sempre a mesma complexidade, nlogn.
+*/
+
+public static Integer getElementByString(BST tree, String s) {
+	if (tree == null || s == null) {
+		return null;
+	}
+	Node n = tree.root();
+	for (int i = 0; i < s.length(); i++) {
+		char c = s.charAt(i);
+		if (c == 0) {
+			n = n.getLeft();
+		}
+		if (c == 1) {
+			n = n.getRight();
+		}
+		if (n == null) {
+			return null;
+		}
+	}
+	return (Integer) n.getElement();
+}
+
+public static List<String> calcularPromocoes(MapGraph<String, Integer> g, Integer n) {
+	ArrayList<String> al = new ArrayList<>();
+	for (String s : g.vertices()) {
+		if (g.inDegree(s) == 0) {
+			al.add(s);
+		} else {
+			Iterator<BasicMapGraphEdge<String, Integer>> it = g.incomingEdges(s).iterator();
+			boolean flag = true;
+			while (it.hasNext()) {
+				BasicMapGraphEdge<String, Integer> e = it.next();
+				Object[] endVertices = g.endVertices(e);
+				if (!al.contains(endVertices[0])) {
+					flag = false;
+					break;
+				}
+			}
+			if (flag) {
+				al.add(s);
+			}
+		}
+		if (al.size() == n) {
+			return al;
+		}
+	}
+	al.clear();
+	return al;
+}
+
+
+public int getSubHeap(int idx, V[] vet){
+HashMap<Integer, Integer> hm = new HashMap<>();
+hm.put(0, heap.get(i));
+for (i=idx+1;i<heap.size();i++){
+	int indexP = (i-1)/2;
+	int elemP=heap.get(indexP);
+	if (hm.containsValue(elemP)){ //Se o nó pai está no vetor a ser retornado
+		if (heap.get((2*indexP+1)==elemP){
+					hm.put(2*(hm.getKey(elemP))+1, elemP);
+				} else {
+					hm.put(2*(hm.getKey(elemP))+2, elemP);
+				}
+			}
+		}
+		v=new int[hm.size()];
+		for (Integer indexAux : hm.keySet()){
+			v[indexAux] = hm.get(indexAux);
+		}
+return v.length;
+}
+
+
+
+
+
+
+
+

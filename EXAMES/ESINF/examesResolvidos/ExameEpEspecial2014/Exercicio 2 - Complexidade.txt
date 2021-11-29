@@ -1,0 +1,14 @@
+// 3 , 10
+long int metodo(int m, long int n)
+{
+	long int x = m; //3
+	int r = 0;
+
+	while (x > 1 && x <= n) {  // 3>1 && 3>=10
+		x = x*m; //9
+		r = r + 1; //1
+	}
+	cout << r;
+	return r;
+} //Complexidade no Melhor Caso Constante O(1),
+  //no Pior caso O(log n);

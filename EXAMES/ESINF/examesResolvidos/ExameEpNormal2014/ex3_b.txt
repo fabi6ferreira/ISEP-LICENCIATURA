@@ -1,0 +1,31 @@
+// Exercicio 3 Epoca Normal 2014
+
+queue<string>PercEscolar::MenorCaminho(string c1,string c2)
+{
+	string inicio="Rua da Eira, n.1";
+	vector<TE> dist;
+	vector<int> path;
+	
+	int key;
+	getVertexKeybyContent(key,c2);
+	disktraAlgorithm(inicio path, dist);
+	queue<TV> aux = getDistinctsPath(key,path); // inicio -> c2
+	
+	vector<TE> dist2;
+	vector<int> path2;
+	int key2;
+	
+	getVertexKeybyContent(key2,c1);
+	disktraAlgorithm(c2,path2,dist2);
+	queue<TN>aux2=getDistinctsPath(key2,path2); // c2->c1
+	
+	while(aux2.size()!=0)
+	{
+		aux.push(aux2);
+		aux2.pop();
+	}
+	return aux;
+}
+
+
+

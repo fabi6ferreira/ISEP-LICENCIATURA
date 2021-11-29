@@ -1,0 +1,108 @@
+3)
+        a)
+                class MapaAereo : public GraphStlPath<pais, int>
+                {
+                private:
+                        // atributos
+                public:
+                        // construtores e destrutor
+                        // outros metodos
+                };
+ 
+        b)
+                Parte-se do principio que na classe pais existe o método getContinente() que devolve uma string correspondente ao nome do continente desse país.
+ 
+                Declaração na classe MapaAereo:
+                        queue<pais> getPaisesByContinente(const string& c) const;
+ 
+                Implementação:
+ 
+                        queue<pais> MapaAereo::getPaisesByContinente(const string& c) const
+                        {
+                                queue<pais> paisesCopia = paises;
+                                queue<pais> resultado;
+ 
+                                while(!paisesCopia.empty())
+                                {
+                                        if (paisesCopia.front().getContinente() == c)
+                                                        paisesCopia.front();
+                                        paisesCopia.pop();
+                                }
+ 
+                                return resultado;
+                        }
+ 
+        c)
+                Declaração na classe MapaAereo:
+                        int getNOpcoesViagem(const pais& p, int nLimitePaises = 3) const; // o limite de paises escolhi por como parametro para não fazer "hardcoding"
+ 
+                Implementação:
+                        Nao encontrei solução melhor mas sei que existe, pois esta está mal. Mas foi algo assim que fiz no exame;
+                        int MapaAereo::getNOpcoesViagem(const pais& p, int nLimitePaises)
+                        {
+                                int nOpcoes = 0;
+                                //confirmar se o pais p está inserido no sistema
+                                bool inserido = false;
+                                queue<pais> paisesCopia = paises;
+ 
+                                while(!paisesCopia.empty())
+                                {
+                                        if (p == paisesCopia.front())
+                                                repetido = true;
+                                        paisesCopia.pop();
+                                }
+ 
+                                if (!inserido)
+                                        return -1;
+ 
+                                pais paisDestinoVisitaLargura = breadthFirstVisit(p).back();
+ 
+                                queue< stack<pais> > todosCaminhos = distinctPaths(p, paisDestinoVisitaLargura);
+                                queue< stack<pais> > todosCaminhosNLimite;
+ 
+                                while(!todosCaminhos.empty())
+                                {
+                                        stack<pais> paisesCaminho = todosCaminhos.front();
+                                        stack<pais> caminhoNLimite;
+ 
+                                        if (paisesCaminho.size() > nLimitePaises - 1)
+                                        {
+                                                int i = 0;
+                                                while(!paisesCaminho.empty())
+                                                {
+                                                        i += 1;
+                                                        if (i < nLimitePaises + 1)
+                                                                caminhoNLimite.insert(paisesCaminho.top());
+                                                        paisesCaminho.pop();
+                                                }
+                                        }
+ 
+                                        todosCaminhosNLimite.push(caminhoNLimite);
+ 
+                                        todosCaminhos.pop();
+                                }
+ 
+                                //eliminar caminhos iguais
+                                list< list<pais> > caminhosUnicosComNLimite;
+ 
+                                //passar de queue<stack<>> para list<list<>> para aplicar sort e unique posteriormente
+                                while(!todosCaminhosNLimite.empty())
+                                {
+                                        stack<pais> paisesCaminho = todosCaminhosNLimite.front();
+                                        list<pais> listPaises;
+ 
+                                        while(!paisesCaminho.empty())
+                                        {
+                                                listPaises.insert(paisesCaminho.top());
+                                                paisesCaminho.pop();
+                                        }
+                                        caminhosUnicosComNLimite.insert(listPaises);
+                                        todosCaminhosNLimite.pop();
+                                }
+ 
+                                caminhosUnicosComNLimite.sort();
+ 
+                                caminhosUnicosComNLimite.unique();
+ 
+                                return (int)caminhosUnicosComNLimite.size();
+                        }

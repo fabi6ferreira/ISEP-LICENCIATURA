@@ -1,0 +1,14 @@
+Alteraçoes a Considerar:
+
+
+randoom de entre numeros predefinidos
+
+
+
+validacoes:
+não pode conquistar quando já dono do local 
+
+
+
+Otimizar o f:
+	Conquista Aliado, associar tambem um caminho pela personagem P.. caso compense mais...

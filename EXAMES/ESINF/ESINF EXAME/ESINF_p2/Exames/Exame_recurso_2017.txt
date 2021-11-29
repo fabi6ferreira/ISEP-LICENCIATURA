@@ -1,0 +1,32 @@
+ // Ex. 1
+public static HashMap<Integer, LinkedList<Integer>> roletaRussa(LinkedList<Integer> list) {
+
+HashMap<Integer, LinkedList<Integer>> output = new HashMap<>();
+LinkedList<Integer> numbersList = new LinkedList<>();
+int iteracoes = list.size();
+
+for (int i = 0; i < iteracoes - 1; i++) {
+
+LinkedList<Integer> tempList = new LinkedList<>();
+
+Random generator = new Random();
+int index = generator.nextInt(list.size());
+
+if (numbersList.isEmpty()) {
+int temp = index;
+
+} else {
+int lastIndex = numbersList.getLast();
+int temp = lastIndex + index-1;
+if (temp > list.size()) {
+temp = list.size()-2 - index - lastIndex;
+}
+}
+numbersList.add(index);
+list.remove(index);
+tempList.addAll(list);
+output.put(index, tempList);
+
+}
+return output;
+}
